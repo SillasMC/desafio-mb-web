@@ -1,13 +1,18 @@
 import InputField from "../../components/InputField";
 
-const StepOneFields = () => {
+interface IStepOneFields {
+  disabled?: boolean;
+}
+
+const StepOneFields: React.FC<IStepOneFields> = ({ disabled = false }) => {
   return (
     <InputField
-        id="email"
-        name="email"
-        type="email"
-        autoComplete="email"
-        label="Endereço de e-mail" />
+      id="email"
+      name="email"
+      type="email"
+      disabled={disabled}
+      autoComplete="email"
+      label="Endereço de e-mail" />
   )
 };
 

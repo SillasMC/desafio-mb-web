@@ -53,7 +53,7 @@ const Registration: React.FC<IRegistration> = ({ handleResult }) => {
       case 2:
         return <StepThree />
       case 3:
-        return <StepFour />
+        return <StepFour isPerson={isPerson} />
       default:
         return <div>Sucesso!</div>
     }
