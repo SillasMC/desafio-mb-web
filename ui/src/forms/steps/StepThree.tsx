@@ -1,4 +1,4 @@
-import InputField from './components/InputField'
+import StepThreeFields from './components/StepThreeFields'
 
 const StepThree = () => {
   return (
@@ -8,12 +8,7 @@ const StepThree = () => {
       </div>
 
       <div className="mt-6 sm:mx-auto sm:w-full sm:max-w-sm">
-        <InputField
-          id="password"
-          name="password"
-          type="password"
-          autoComplete="current-password"
-          label="Sua senha" />
+        <StepThreeFields />
       </div>
     </>
   )

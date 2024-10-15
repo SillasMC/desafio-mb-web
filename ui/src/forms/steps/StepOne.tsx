@@ -1,5 +1,5 @@
 import { useState } from "react";
-import InputField from "./components/InputField";
+import StepOneFields from "./components/StepOneFields";
 
 interface IStepOne {
   isPerson: boolean;
@@ -20,12 +20,7 @@ const StepOne: React.FC<IStepOne> = ({ isPerson, handlePerson }) => {
         <h2 className="text-left text-2xl font-bold leading-9 tracking-tight text-gray-900">Seja bem vindo(a)</h2>
       </div>
       <div className="mt-6 sm:mx-auto sm:w-full sm:max-w-sm space-y-6">
-        <InputField
-          id="email"
-          name="email"
-          type="email"
-          autoComplete="email"
-          label="Endereço de e-mail" />
+        <StepOneFields />
         <div className="flex">
           <div className="flex items-center me-4">
             <input

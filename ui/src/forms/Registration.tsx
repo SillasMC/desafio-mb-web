@@ -2,11 +2,11 @@ import { useState } from 'react'
 
 import { Form, Formik  } from 'formik'
 
-import StepOne from './StepOne'
-import StepTwoPF from './StepTwoPF'
-import StepTwoPJ from './StepTwoPJ'
-import StepThree from './StepThree'
-import StepFour from './StepFour'
+import StepOne from './steps/StepOne'
+import StepTwoPF from './steps/StepTwoPF'
+import StepTwoPJ from './steps/StepTwoPJ'
+import StepThree from './steps/StepThree'
+import StepFour from './steps/StepFour'
 
 import { initialValues } from './model/initialValues';
 import { validationSchema } from './model/validationSchema';
