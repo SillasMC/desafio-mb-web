@@ -78,7 +78,7 @@ const Registration: React.FC<IRegistration> = ({ handleResult }) => {
               {step !== 0 && (
                 <button
                   onClick={decreaseStep}
-                  className="w-1/2 justify-center rounded-md bg-[#ff9900] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#f89d00b3] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff9900]"
+                  className="w-1/2 justify-center rounded-md border border-[#ff9900] px-3 py-1.5 text-sm font-semibold leading-6 text-[#ff9900] shadow-sm hover:border-[#f89d00b3] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff9900]"
                   >
                     Voltar
                 </button>

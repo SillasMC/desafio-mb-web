@@ -5,6 +5,18 @@ import { ptBR } from 'date-fns/locale'
 const cpfRegEx = /^\d{3}\.\d{3}\.\d{3}\-\d{2}$/
 const cnpjRegEx = /^\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2}$/
 
+const validateDate = val => {
+  if (val) {
+    const parsedDate = parse(val, 'yyyy-MM-dd', new Date(), { locale: ptBR });
+    const isValidDate = isValid(parsedDate);
+    if (isValidDate) {
+      return isBefore(parsedDate, new Date())
+    }
+    return false;
+  }
+  return false;
+}
+
 export const validationSchema = (step: number, isPerson: boolean) => {
   switch (step) {
     case 0:
@@ -20,17 +32,7 @@ export const validationSchema = (step: number, isPerson: boolean) => {
         birthDate: yup.string()
           .nullable()
           .required('Campo data de nascimento deve ser preenchido')
-          .test('expDate', 'Data de nascimento inválida', val => {
-            if (val) {
-              const parsedDate = parse(val, 'P', new Date(), { locale: ptBR });
-              const isValidDate = isValid(parsedDate);
-              if (isValidDate) {
-                return isBefore(parsedDate, new Date())
-              }
-              return false;
-            }
-            return false;
-          }),
+          .test('expDate', 'Data de nascimento inválida', validateDate),
         telephone: yup.string().required('Campo telefone deve ser preenchido'),
       }) : yup.object().shape({
         name: yup.string().required('Campo razão social deve ser preenchido'),
@@ -40,17 +42,7 @@ export const validationSchema = (step: number, isPerson: boolean) => {
         foundationDate: yup.string()
           .nullable()
           .required('Campo data de abertura deve ser preenchido')
-          .test('expDate', 'Data de abertura inválida', val => {
-            if (val) {
-              const parsedDate = parse(val, 'P', new Date(), { locale: ptBR });
-              const isValidDate = isValid(parsedDate);
-              if (isValidDate) {
-                return isBefore(parsedDate, new Date())
-              }
-              return false;
-            }
-            return false;
-          }),
+          .test('expDate', 'Data de abertura inválida', validateDate),
         telephone: yup.string().required('Campo telefone deve ser preenchido')
       })
     case 2:
