@@ -8,14 +8,14 @@ function App() {
   
   return (
     <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
-      {result && (
+      {result ? (
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <h4 className="mt-10 text-left text-sm leading-9 tracking-tight text-gray-900">
-            {result}
+            Resultado: {result}
           </h4>
         </div>
-      )}
-      <Registration handleResult={str => setResult(str)} />
+      ) : <Registration handleResult={str => setResult(str)} />
+      }
     </div>
   )
 }

@@ -1,11 +1,14 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
-const app = express();
+const cors = require('cors');
 const { registerUserSchema } = require('./validators/register-user-schema');
+
+const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
+app.use(cors())
 
 app.get('/registration', (req, res, next) => {
     if (/(.ico|.js|.css|.jpg|.png|.map)$/i.test(req.path)) {
@@ -23,7 +26,8 @@ app.post('/registration', function(req, res) {
     console.log('[POST] Creating new register');
     console.log('register is: ', req.body);
     try {
-        const data = registerUserSchema.validateSync(req.body, { abortEarly: false, stripUnknown: true });
+        const schema = registerUserSchema(!!req.body.cpf)
+        const data = schema.validateSync(req.body, { abortEarly: false, stripUnknown: true });
     
         console.log('register saved');
         return res.json({ message: 'Sucesso', data });

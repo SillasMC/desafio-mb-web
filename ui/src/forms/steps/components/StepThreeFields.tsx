@@ -12,7 +12,7 @@ const StepThreeFields: React.FC<ISteThreeFields> = ({ disabled = false }) => {
       type="password"
       disabled={disabled}
       autoComplete="current-password"
-      label="Sua senha" />
+      label={disabled ? 'Senha' : 'Sua senha'} />
   )
 };
 
