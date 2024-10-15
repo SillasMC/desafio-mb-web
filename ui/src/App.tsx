@@ -1,17 +1,22 @@
 import { useState } from 'react'
 
-function App() {
-  const [count, setCount] = useState(0)
 
+import Registration from './forms/Registration'
+
+function App() {
+  const [result, setResult] = useState('')
+  
   return (
-    <>
-      <h1 className="text-4xl text-blue-500">MB Web</h1>
-      <div className='mt-8 inline-flex'>
-        <button className="py-2.5 px-6 text-sm bg-indigo-500 text-white rounded-lg cursor-pointer font-semibold text-center shadow-xs transition-all duration-500 hover:bg-indigo-700" onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-      </div>
-    </>
+    <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+      {result && (
+        <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+          <h4 className="mt-10 text-left text-sm leading-9 tracking-tight text-gray-900">
+            {result}
+          </h4>
+        </div>
+      )}
+      <Registration handleResult={str => setResult(str)} />
+    </div>
   )
 }
 
