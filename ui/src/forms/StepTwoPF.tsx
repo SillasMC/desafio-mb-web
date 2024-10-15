@@ -27,7 +27,7 @@ const StepTwoPF = () => {
           id="telephone"
           name="telephone"
           type="tel"
-          label="Número de telefone" />
+          label="Telefone" />
       </div>
     </>
   )

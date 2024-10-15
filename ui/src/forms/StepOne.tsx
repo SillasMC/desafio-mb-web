@@ -25,8 +25,7 @@ const StepOne: React.FC<IStepOne> = ({ isPerson, handlePerson }) => {
           name="email"
           type="email"
           autoComplete="email"
-          label="Endereço de e-mail"
-        />
+          label="Endereço de e-mail" />
         <div className="flex">
           <div className="flex items-center me-4">
             <input
