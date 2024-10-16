@@ -3,6 +3,8 @@ export const initialValues = {
     name: "",
     cpf: "",
     birthDate: "",
+    cnpj: "",
+    foundationDate: "",
     telephone: "",
     password: ""
 }

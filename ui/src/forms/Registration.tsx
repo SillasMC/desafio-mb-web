@@ -31,8 +31,15 @@ const Registration: React.FC<IRegistration> = ({ handleResult }) => {
   }
 
   const submitForm = (values, actions) => {
-    alert(JSON.stringify(values, null, 2));
-    axiosApi.post(ENDPOINTS.SAVE_REGISTER, values)
+    const payload = { ...values };
+    if (isPerson) {
+      delete payload.cnpj
+      delete payload.foundationDate
+    } else {
+      delete payload.cpf
+      delete payload.birthDate
+    }
+    axiosApi.post(ENDPOINTS.SAVE_REGISTER, payload)
       .then((response) => {
         handleResult(JSON.stringify(response.data));
       })
