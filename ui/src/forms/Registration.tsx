@@ -26,7 +26,23 @@ const Registration: React.FC<IRegistration> = ({ handleResult }) => {
     setStep(prev => prev + 1)
   }
 
-  const decreaseStep = () => {
+  const decreaseStep = (setFieldValue, setTouched) => {
+    switch (step) {
+      case 1:
+        setFieldValue('name','')
+        setFieldValue('cpf','')
+        setFieldValue('birthDate','')
+        setFieldValue('cnpj','')
+        setFieldValue('foundationDate','')
+        setFieldValue('telephone','')
+        break;
+      case 2:
+        setFieldValue('password','')
+        break;
+      default:
+        break;
+    }
+    setTouched({})
     setStep(prev => prev - 1)
   }
 
@@ -89,13 +105,13 @@ const Registration: React.FC<IRegistration> = ({ handleResult }) => {
         validationSchema={currentValidationSchema}
         onSubmit={handleSubmit}
       >
-        {({ isSubmitting }) => (
+        {({ isSubmitting, setFieldValue, setTouched }) => (
           <Form>
             {getStep(step)}
             <div className="flex mt-6 sm:mx-auto sm:w-full sm:max-w-sm gap-2">
               {step !== 0 && (
                 <button
-                  onClick={decreaseStep}
+                  onClick={() => decreaseStep(setFieldValue, setTouched)}
                   type="button"
                   className="w-1/2 justify-center rounded-md border border-[#ff9900] px-3 py-1.5 text-sm font-semibold leading-6 text-[#ff9900] shadow-sm hover:border-[#f89d00b3] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff9900]"
                   >
