@@ -1,4 +1,4 @@
-import InputField from "../../components/InputField";
+import PasswordField from "../../components/PasswordField";
 
 interface ISteThreeFields {
   disabled?: boolean;
@@ -6,12 +6,10 @@ interface ISteThreeFields {
 
 const StepThreeFields: React.FC<ISteThreeFields> = ({ disabled = false }) => {
   return (
-    <InputField
+    <PasswordField
       id="password"
       name="password"
-      type="password"
       disabled={disabled}
-      autoComplete="current-password"
       label={disabled ? 'Senha' : 'Sua senha'} />
   )
 };
