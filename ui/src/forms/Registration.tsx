@@ -31,6 +31,7 @@ const {
 const Registration: React.FC<IRegistration> = ({ handleResult }) => {
   const [step, setStep] = useState(0)
   const [isPerson, setIsPerson] = useState(true)
+  const [apiError, setApiError] = useState('')
   const currentValidationSchema = validationSchema(step, isPerson);
   
   const increaseStep = () => {
@@ -69,9 +70,10 @@ const Registration: React.FC<IRegistration> = ({ handleResult }) => {
     axiosApi.post(ENDPOINTS.SAVE_REGISTER, payload)
       .then((response) => {
         handleResult(JSON.stringify(response.data));
+        setApiError('')
       })
       .catch((error) => {
-        handleResult(`${error.message} ${JSON.stringify(error.response.data.errors)}`);
+        setApiError(`${error.message} ${JSON.stringify(error.response.data.errors)}`);
         console.log('Error', error);
       })
       .finally(() => {
@@ -148,6 +150,16 @@ const Registration: React.FC<IRegistration> = ({ handleResult }) => {
                 </div>
               )}
             </div>
+            {apiError && (
+              <>
+                <p className="mt-4 text-center text-sm leading-9 tracking-tight text-red-500">
+                  Erro: ${apiError}
+                </p>
+                <p className="text-center text-sm leading-9 tracking-tight text-red-500">
+                  Tente novamente!
+                </p>
+              </>
+            )}
           </Form>
         )}
       </Formik>
