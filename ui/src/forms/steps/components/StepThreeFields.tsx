@@ -1,4 +1,9 @@
 import PasswordField from "../../components/PasswordField";
+import formModel from '../../model/formModel'
+
+const {
+  password
+} = formModel
 
 interface ISteThreeFields {
   disabled?: boolean;
@@ -7,10 +12,10 @@ interface ISteThreeFields {
 const StepThreeFields: React.FC<ISteThreeFields> = ({ disabled = false }) => {
   return (
     <PasswordField
-      id="password"
-      name="password"
+      id={password.name}
+      name={password.name}
       disabled={disabled}
-      label={disabled ? 'Senha' : 'Sua senha'} />
+      label={disabled ? password.label2 : password.label} />
   )
 };
 

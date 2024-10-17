@@ -2,6 +2,19 @@ import * as yup from 'yup'
 import { parse, isValid, isBefore } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
 
+import formModel from './formModel'
+
+const {
+  email,
+  name,
+  cpf,
+  birthDate,
+  cnpj,
+  foundationDate,
+  telephone,
+  password
+} = formModel
+
 const cpfRegEx = /^\d{3}\.\d{3}\.\d{3}\-\d{2}$/
 const cnpjRegEx = /^\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2}$/
 
@@ -21,33 +34,35 @@ export const validationSchema = (step: number, isPerson: boolean) => {
   switch (step) {
     case 0:
       return yup.object().shape({
-        email: yup.string().required('Campo email deve ser preenchido').email('Email inválido'),
+        [email.name]: yup.string()
+          .required(email.requiredErrorMsg)
+          .email(email.invalidErrorMsg),
       })
     case 1:
       return isPerson ? yup.object().shape({
-        name: yup.string().required('Campo nome deve ser preenchido'),
-        cpf: yup.string()
-          .required('Campo CPF deve ser preenchido')
-          .matches(cpfRegEx, 'Campo CPF inválido'),
-        birthDate: yup.string()
+        [name.name]: yup.string().required(name.requiredErrorMsg),
+        [cpf.name]: yup.string()
+          .required(cpf.requiredErrorMsg)
+          .matches(cpfRegEx, cpf.invalidErrorMsg),
+        [birthDate.name]: yup.string()
           .nullable()
-          .required('Campo data de nascimento deve ser preenchido')
-          .test('expDate', 'Data de nascimento inválida', validateDate),
-        telephone: yup.string().required('Campo telefone deve ser preenchido'),
+          .required(birthDate.requiredErrorMsg)
+          .test('expDate', birthDate.invalidErrorMsg, validateDate),
+        [telephone.name]: yup.string().required(telephone.requiredErrorMsg),
       }) : yup.object().shape({
-        name: yup.string().required('Campo razão social deve ser preenchido'),
-        cnpj: yup.string()
-          .required('Campo CNPJ deve ser preenchido')
-          .matches(cnpjRegEx, 'Campo CNPJ inválido'),
-        foundationDate: yup.string()
+        [name.name]: yup.string().required(name.requiredErrorMsg2),
+        [cnpj.name]: yup.string()
+          .required(cnpj.requiredErrorMsg)
+          .matches(cnpjRegEx, cnpj.invalidErrorMsg),
+        [foundationDate.name]: yup.string()
           .nullable()
-          .required('Campo data de abertura deve ser preenchido')
-          .test('expDate', 'Data de abertura inválida', validateDate),
-        telephone: yup.string().required('Campo telefone deve ser preenchido')
+          .required(foundationDate.requiredErrorMsg)
+          .test('expDate', foundationDate.invalidErrorMsg, validateDate),
+        [telephone.name]: yup.string().required(telephone.requiredErrorMsg)
       })
     case 2:
       return yup.object().shape({
-        password: yup.string().required('Campo senha deve ser preenchido')
+        [password.name]: yup.string().required(password.requiredErrorMsg)
       })
     default:
       return null

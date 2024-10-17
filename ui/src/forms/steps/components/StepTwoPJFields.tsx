@@ -1,5 +1,14 @@
 import InputField from "../../components/InputField";
 
+import formModel from '../../model/formModel'
+
+const {
+  name,
+  cnpj,
+  foundationDate,
+  telephone,
+} = formModel
+
 interface IStepTwoPJFields {
   disabled?: boolean;
 }
@@ -8,29 +17,29 @@ const StepTwoPJFields: React.FC<IStepTwoPJFields> = ({ disabled = false }) => {
   return (
     <>
       <InputField
-        id="name"
-        name="name"
+        id={name.name}
+        name={name.name}
         type="text"
         disabled={disabled}
-        label="Razão social" />
+        label={name.label2} />
       <InputField
-        id="cnpj"
-        name="cnpj"
+        id={cnpj.name}
+        name={cnpj.name}
         type="text"
         disabled={disabled}
-        label="CNPJ" />
+        label={cnpj.label} />
       <InputField
-        id="foundationDate"
-        name="foundationDate"
+        id={foundationDate.name}
+        name={foundationDate.name}
         type="date"
         disabled={disabled}
-        label="Data de abertura da empresa" />
+        label={foundationDate.label} />
       <InputField
-        id="telephone"
-        name="telephone"
+        id={telephone.name}
+        name={telephone.name}
         type="tel"
         disabled={disabled}
-        label="Telefone" />
+        label={telephone.label} />
     </>
   )
 };

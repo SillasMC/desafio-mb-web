@@ -9,6 +9,7 @@ import StepFour from './steps/StepFour'
 
 import { initialValues } from './model/initialValues';
 import { validationSchema } from './model/validationSchema';
+import formModel from './model/formModel'
 
 import { ENDPOINTS } from '../service/endpoints';
 import axiosApi from '../service/axiosConfig';
@@ -16,6 +17,16 @@ import axiosApi from '../service/axiosConfig';
 interface IRegistration {
   handleResult: (str: string) => void
 }
+
+const {
+  name,
+  cpf,
+  birthDate,
+  cnpj,
+  foundationDate,
+  telephone,
+  password
+} = formModel
 
 const Registration: React.FC<IRegistration> = ({ handleResult }) => {
   const [step, setStep] = useState(0)
@@ -29,15 +40,15 @@ const Registration: React.FC<IRegistration> = ({ handleResult }) => {
   const decreaseStep = (setFieldValue, setTouched) => {
     switch (step) {
       case 1:
-        setFieldValue('name','')
-        setFieldValue('cpf','')
-        setFieldValue('birthDate','')
-        setFieldValue('cnpj','')
-        setFieldValue('foundationDate','')
-        setFieldValue('telephone','')
+        setFieldValue(name.name,'')
+        setFieldValue(cpf.name,'')
+        setFieldValue(birthDate.name,'')
+        setFieldValue(cnpj.name,'')
+        setFieldValue(foundationDate.name,'')
+        setFieldValue(telephone.name,'')
         break;
       case 2:
-        setFieldValue('password','')
+        setFieldValue(password.name,'')
         break;
       default:
         break;
